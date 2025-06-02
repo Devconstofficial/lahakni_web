@@ -15,7 +15,8 @@ class CustomTextField extends StatefulWidget {
   final double width;
   final Color borderColor;
   final Color hintColor;
-  final bool isStyle;
+  final double hintSize;
+  final double textSize;
   final TextInputType textInputType;
   final bool readOnly;
   final Widget? suffix;
@@ -37,6 +38,8 @@ class CustomTextField extends StatefulWidget {
     this.focusNode,
     required this.hintText,
     this.isObscure = false,
+    this.hintSize = 14,
+    this.textSize = 14,
     // this.height = 68,
     this.contentPadding = const EdgeInsets.symmetric(vertical: 25,horizontal: 10),
     this.width = double.infinity,
@@ -45,7 +48,6 @@ class CustomTextField extends StatefulWidget {
     this.focusedFillColor = kWhiteColor,
     this.isFilled = false,
     this.hintColor = kGreyColor,
-    this.isStyle = false,
     this.textInputType = TextInputType.text,
     this.readOnly = false,
     this.suffix,
@@ -106,7 +108,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         contentPadding: EdgeInsets.symmetric(vertical: 25,horizontal: 20),
         hintText: widget.hintText,
         hintStyle: AppStyles.greyTextStyle().copyWith(
-          fontSize: 14,
+          fontSize: widget.hintSize,
           fontWeight: FontWeight.w400,
           color: widget.hintColor,
         ),
@@ -129,7 +131,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
       ),
       style: GoogleFonts.mulish(
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: FontWeight.w400,
         color: kBlackTextColor,
       ),

@@ -6,9 +6,13 @@ import 'package:get/get.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/app_styles.dart';
+import '../../custom_widgets/custom_pagination.dart';
 import '../../custom_widgets/custom_textfield.dart';
+import '../../custom_widgets/viewDriverDialog.dart';
+import '../../utils/app_strings.dart';
 import '../notifications/controller/notification_controller.dart';
 import '../notifications/notification_screen.dart';
+import '../sidemenu/controller/sidemenu_controller.dart';
 import '../sidemenu/sidemenu.dart';
 import 'controller/dashboard_controller.dart';
 import 'package:fl_chart/fl_chart.dart' as fl;
@@ -78,7 +82,11 @@ class DashboardScreen extends GetView<DashboardController> {
                                   notificationController.showNotification.value = true;
                                 }),
                                 SizedBox(width: 9.w),
-                                customContainer(kSettingsIcon, () {}),
+                                customContainer(kSettingsIcon, () {
+                                  final SideMenuController menuController = Get.put(SideMenuController());
+                                  menuController.onItemTapped(-1);
+                                  Get.toNamed(kSettingScreenRoute);
+                                }),
                                 SizedBox(width: 21.w),
                                 Container(
                                   height: 60,
@@ -323,6 +331,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                   ),
                                             ),
                                             titlesData: FlTitlesData(
+
                                               bottomTitles: AxisTitles(
                                                 sideTitles: SideTitles(
                                                   showTitles: true,
@@ -359,6 +368,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                 sideTitles: SideTitles(
                                                   showTitles: true,
                                                   interval: 20,
+                                                  reservedSize: 40,
                                                   getTitlesWidget:
                                                       (value, meta) => Text(
                                                         value
@@ -368,7 +378,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                             AppStyles.regularGilroyTextStyle()
                                                                 .copyWith(
                                                                   fontSize:
-                                                                      14.sp,
+                                                                      13.sp,
                                                                   color:
                                                                       kGreyColor4,
                                                                   fontWeight:
@@ -516,31 +526,32 @@ class DashboardScreen extends GetView<DashboardController> {
                               ),
                             ),
                             SizedBox(height: 41),
-                            Container(
+                            Obx(() => Container(
                               width: width,
                               decoration: BoxDecoration(
-                                border: Border.all(color: kGreyColor3),
                                 borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color: kGreyColor, width: 0.3),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(20),
+                                padding: EdgeInsets.symmetric(vertical: 33.h,horizontal: 25.w),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          "Account Request",
-                                          style:
-                                              AppStyles.semiBoldGilroyTextStyle()
-                                                  .copyWith(
-                                                    fontSize: 20.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
+                                          "Driver Account Request",
+                                          style: AppStyles.regularGilroyTextStyle()
+                                              .copyWith(
+                                            fontSize: 20.sp,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
-                                        Spacer(),
                                         SizedBox(
-                                          height: 44,
-                                          width: 357,
+                                          height: 45,
+                                          width: 331.w,
                                           child: CustomTextField(
                                             hintText: "Search here...",
                                             // width: 357.w,
@@ -552,20 +563,138 @@ class DashboardScreen extends GetView<DashboardController> {
                                                 kSearchIcon,
                                               ),
                                             ),
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                  vertical: 6,
-                                                  horizontal: 10,
-                                                ),
+                                            hintSize: 11,
+                                            textSize: 11,
+                                            contentPadding: EdgeInsets.all(0),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 24),
+                                    SizedBox(height: 22.h,),
+                                    Stack(
+                                      children: [
+                                        Container(
+                                          height: 70,
+                                          decoration: BoxDecoration(
+                                            color: kGreyColor15.withOpacity(0.2),
+                                            borderRadius: BorderRadius.circular(12),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: width,
+                                          child: DataTable(
+                                            columnSpacing: 0,
+                                            headingRowHeight: 70,
+                                            dividerThickness: 0,
+                                            columns: [
+                                              DataColumn(label: Container(width: 50),columnWidth: FixedColumnWidth(50)),
+                                              DataColumn(
+                                                label: Flexible(
+                                                  child: Text(
+                                                    "Name",
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style:
+                                                    AppStyles.regularGilroyTextStyle()
+                                                        .copyWith(
+                                                      fontSize: 16.sp,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              DataColumn(
+                                                label: Flexible(
+                                                  child: Text(
+                                                    "Role",
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style:
+                                                    AppStyles.regularGilroyTextStyle()
+                                                        .copyWith(
+                                                      fontSize: 16.sp,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              DataColumn(
+                                                label: Flexible(
+                                                  child: Text(
+                                                    "Account Create Date",
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style:
+                                                    AppStyles.regularGilroyTextStyle()
+                                                        .copyWith(
+                                                      fontSize: 16.sp,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              DataColumn(
+                                                headingRowAlignment:
+                                                MainAxisAlignment.center,
+                                                label: Flexible(
+                                                  child: Text(
+                                                    "Stats",
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style:
+                                                    AppStyles.regularGilroyTextStyle()
+                                                        .copyWith(
+                                                      fontSize: 16.sp,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              DataColumn(
+                                                headingRowAlignment:
+                                                MainAxisAlignment.center,
+                                                label: Flexible(
+                                                  child: Text(
+                                                    "Actions",
+                                                    overflow: TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style:
+                                                    AppStyles.regularGilroyTextStyle()
+                                                        .copyWith(
+                                                      fontSize: 16.sp,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                            rows: controller.pagedUsers
+                                                .map((user) => _buildDataRow(
+                                                user['name']!,
+                                                user['role']!,
+                                                user['createData']!,
+                                                user['status'],
+                                                user,
+                                                context))
+                                                .toList(),
+                                            dataRowMaxHeight: 70,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 35.h,),
+                                    Obx(() => CustomPagination(
+                                      currentPage: controller.currentPage.value,
+                                      visiblePages: controller.visiblePageNumbers,
+                                      onPrevious: controller.goToPreviousPage,
+                                      onNext: controller.goToNextPage,
+                                      onPageSelected: controller.goToPage,
+                                    )),
+
                                   ],
                                 ),
                               ),
-                            ),
+                            )),
                           ],
                         ),
                       ),
@@ -584,6 +713,126 @@ class DashboardScreen extends GetView<DashboardController> {
       ),
     );
   }
+
+  DataRow _buildDataRow(String name, String role, String createDate ,String status, Map<String, dynamic> user, context) {
+
+    return DataRow(
+      color: WidgetStateProperty.all(Colors.transparent),
+      cells: [
+        DataCell(
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                user['isChecked'] = !user['isChecked'];
+                controller.requests.refresh();
+              },
+              child: Container(
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(
+                    color: kBlackColor.withOpacity(0.3),
+                  ),
+                ),
+                child: user['isChecked']
+                    ? Icon(Icons.check, size: 16, color: kBlackColor)
+                    : null,
+              ),
+            ),
+          ),
+        ),
+        DataCell(
+            Text(
+              name,
+              textAlign: TextAlign.center,
+              style: AppStyles.blackTextStyle()
+                  .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w600),
+            )),
+        DataCell(Text(
+          role,
+          textAlign: TextAlign.center,
+          style: AppStyles.blackTextStyle()
+              .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w600),
+        )),
+        DataCell(Center(
+          child: Text(
+            createDate,
+            textAlign: TextAlign.center,
+            style: AppStyles.blackTextStyle()
+                .copyWith(fontSize: 14.sp, fontWeight: FontWeight.w600),
+          ),
+        )),
+        DataCell(
+          Center(
+            child: Container(
+              height: 50,
+              width: 138.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: kPrimaryColor.withOpacity(0.11),
+              ),
+              child: Center(
+                child: Text(status,style: AppStyles.semiBoldGilroyTextStyle().copyWith(fontSize: 13,color: kPrimaryColor),),
+              ),
+            ),
+          ),
+        ),
+        DataCell(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: (){
+                    Get.dialog(viewDriverDialog(context, user));
+                  },
+                  child: Container(
+                    height: 44,
+                    width: 100.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                          color: kPrimaryColor
+                      ),
+                      color: kWhiteColor,
+                    ),
+                    child: Center(
+                      child: Text("View",style: AppStyles.semiBoldGilroyTextStyle().copyWith(fontSize: 13,color: kPrimaryColor),),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 14.w,),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    height: 44,
+                    width: 100.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                          color: kPrimaryColor
+                      ),
+                      color: kPrimaryColor,
+                    ),
+                    child: Center(
+                      child: Text("Approve",style: AppStyles.semiBoldGilroyTextStyle().copyWith(fontSize: 13,color: kWhiteColor),),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
 
   customContainer(image, VoidCallback onTap) {
     return InkWell(

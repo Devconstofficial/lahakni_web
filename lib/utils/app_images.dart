@@ -19,14 +19,14 @@ String kArrowDownIcon = "$basePathIcons/down.svg";
 String kSearchIcon = "$basePathIcons/search.svg";
 String kCursorIcon = "$basePathIcons/cursor.svg";
 String kLocationIcon = "$basePathIcons/location.svg";
+String kGalleryIcon = "$basePathIcons/galleryIcon.png";
+String kFilterIcon = "$basePathIcons/filter.png";
+String kCalenderIcon = "$basePathIcons/calender.png";
+String kStarIcon = "$basePathIcons/star.png";
+String kGalleryIcon1 = "$basePathIcons/gallery.svg";
+String kDocImage = "$basePathIcons/docImage.png";
 
-
-String kInsightsIcon = "$basePathIcons/insights.svg";
-String kWalletIcon = "$basePathIcons/wallet.svg";
-String kTermsIcon = "$basePathIcons/terms.svg";
-String kBookingIcon = "$basePathIcons/booking.svg";
 String kChatIcon = "$basePathIcons/chat.svg";
-
 
 
 /// IMAGES
@@ -40,4 +40,9 @@ String kFullLogoImage = "$basePath/logo_full.png";
 String kPersonImage = "$basePath/person.png";
 String kPersonImage1 = "$basePath/userImage.png";
 String kLineImage = "$basePath/line.png";
-
+String kCar1Image = "$basePath/car1.png";
+String kCar2Image = "$basePath/car2.png";
+String kCar3Image = "$basePath/car3.png";
+String kPopupImage = "$basePath/popup.png";
+String kCarBackImage = "$basePath/car_back.png";
+String kCarFrontImage = "$basePath/car_front.png";

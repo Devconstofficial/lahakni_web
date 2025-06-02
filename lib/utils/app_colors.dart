@@ -2,7 +2,9 @@ import 'dart:ui';
 
 const Color kPrimaryColor = Color(0xFF26353B);
 const Color kSecondaryColor = Color(0xFF31572C);
+const Color kSecondaryColor1 = Color(0xFF28D30E);
 const Color kGreenColor = Color(0xFFA2EB29);
+const Color kTealColor = Color(0xFF92E3A9);
 const Color kRedColor = Color(0xFFED0000);
 const Color kOrangeColor = Color(0xFFFF9500);
 const Color kBgColor = Color(0xFFEFE9E9);
@@ -23,4 +25,11 @@ const Color kGreyColor6 = Color(0xFF77758D);
 const Color kGreyColor7 = Color(0xFFE7F9EC);
 const Color kGreyColor8 = Color(0xFFD9D9D9);
 const Color kGreyColor9 = Color(0xFFFDFDFD);
+const Color kGreyColor10 = Color(0xFF717B8C);
+const Color kGreyColor11 = Color(0xFFEDF2F6);
+const Color kGreyColor12 = Color(0xFF4C535F);
+const Color kGreyColor13 = Color(0xFFE0E4EC);
+const Color kGreyColor14 = Color(0xFF999999);
+const Color kGreyColor15 = Color(0xFFA0A0A0);
+const Color kGreyColor16 = Color(0xFF1E1E1E);
 

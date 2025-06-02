@@ -8,10 +8,12 @@ import 'package:lahakni_web/custom_widgets/user_card.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/app_styles.dart';
+import '../../custom_widgets/custom_pagination.dart';
 import '../../custom_widgets/custom_textfield.dart';
 import '../../utils/app_strings.dart';
 import '../notifications/controller/notification_controller.dart';
 import '../notifications/notification_screen.dart';
+import '../sidemenu/controller/sidemenu_controller.dart';
 import '../sidemenu/sidemenu.dart';
 import 'controller/user_controller.dart';
 
@@ -80,7 +82,11 @@ class UserScreen extends GetView<UserController> {
                                   notificationController.showNotification.value = true;
                                 }),
                                 SizedBox(width: 9.w),
-                                customContainer(kSettingsIcon, () {}),
+                                customContainer(kSettingsIcon, () {
+                                  final SideMenuController menuController = Get.put(SideMenuController());
+                                  menuController.onItemTapped(-1);
+                                  Get.toNamed(kSettingScreenRoute);
+                                }),
                                 SizedBox(width: 21.w),
                                 Container(
                                   height: 60,
@@ -214,96 +220,15 @@ class UserScreen extends GetView<UserController> {
                                       );
                                     }),
                                     SizedBox(height: 43),
+                                    Obx(() => CustomPagination(
+                                      currentPage: controller.currentPage.value,
+                                      visiblePages: controller.visiblePageNumbers,
+                                      onPrevious: controller.goToPreviousPage,
+                                      onNext: controller.goToNextPage,
+                                      onPageSelected: controller.goToPage,
+                                    )),
+                                    SizedBox(height: 24),
 
-                                    Obx(() {
-                                      return Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: controller.goToPreviousPage,
-                                            child: Container(
-                                              height: 44,
-                                              width: 115,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(100),
-                                                border: Border.all(color: kBlackColor.withOpacity(0.08)),
-                                              ),
-                                              padding: const EdgeInsets.all(5),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  CircleAvatar(
-                                                    radius: 16,
-                                                    backgroundColor: kGreyColor8.withOpacity(0.5),
-                                                    child: Transform.rotate(
-                                                      angle: 3.1416,
-                                                      child: const Icon(Icons.arrow_right_alt, size: 12),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 5),
-                                                  Text("Previous", style: AppStyles.semiBoldGilroyTextStyle().copyWith(fontSize: 14)),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(width: 18),
-                                          ...controller.visiblePageNumbers.map((page) {
-                                            final isSelected = controller.currentPage.value == page;
-                                            return Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 5),
-                                              child: GestureDetector(
-                                                onTap: () => controller.goToPage(page),
-                                                child: Container(
-                                                  height: 30,
-                                                  width: 40,
-                                                  decoration: BoxDecoration(
-                                                    color: isSelected ? kBlackColor : Colors.transparent,
-                                                    borderRadius: BorderRadius.circular(8),
-                                                    border: Border.all(
-                                                      color: isSelected ? kBlackColor : kBlackColor.withOpacity(0.08),
-                                                    ),
-                                                  ),
-                                                  child: Center(
-                                                    child: Text(
-                                                      page.toString(),
-                                                      style: AppStyles.semiBoldGilroyTextStyle().copyWith(
-                                                        fontSize: 14,
-                                                        color: isSelected ? Colors.white : Colors.black,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }),
-                                          const SizedBox(width: 18),
-                                          GestureDetector(
-                                            onTap: controller.goToNextPage,
-                                            child: Container(
-                                              height: 44,
-                                              width: 115,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(100),
-                                                border: Border.all(color: kBlackColor.withOpacity(0.08)),
-                                              ),
-                                              padding: const EdgeInsets.all(5),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  CircleAvatar(
-                                                    radius: 16,
-                                                    backgroundColor: kGreyColor8.withOpacity(0.5),
-                                                    child: const Icon(Icons.arrow_right_alt, size: 12),
-                                                  ),
-                                                  const SizedBox(width: 5),
-                                                  Text("Next", style: AppStyles.semiBoldGilroyTextStyle().copyWith(fontSize: 14)),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }),
                                   ],
                                 ),
                               ),

@@ -10,8 +10,10 @@ import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/app_styles.dart';
 import '../../custom_widgets/custom_textfield.dart';
+import '../../utils/app_strings.dart';
 import '../notifications/controller/notification_controller.dart';
 import '../notifications/notification_screen.dart';
+import '../sidemenu/controller/sidemenu_controller.dart';
 import '../sidemenu/sidemenu.dart';
 import 'controller/user_controller.dart';
 
@@ -90,7 +92,11 @@ class UserDetailScreen extends GetView<UserController> {
                                   notificationController.showNotification.value = true;
                                 }),
                                 SizedBox(width: 9.w),
-                                customContainer(kSettingsIcon, () {}),
+                                customContainer(kSettingsIcon, () {
+                                  final SideMenuController menuController = Get.put(SideMenuController());
+                                  menuController.onItemTapped(-1);
+                                  Get.toNamed(kSettingScreenRoute);
+                                }),
                                 SizedBox(width: 21.w),
                                 Container(
                                   height: 60,
