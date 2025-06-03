@@ -506,7 +506,7 @@ class SettingScreen extends GetView<SettingController> {
                                 ),
                                 customTab(
                                   onTap: () => controller.changeTab(1),
-                                  title: "Security",
+                                  title: "Manage vehicle",
                                   index: 1,
                                 ),
                                 customTab(
