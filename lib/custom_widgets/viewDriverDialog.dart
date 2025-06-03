@@ -11,11 +11,10 @@ import 'custom_row.dart';
 
 
 
-customImageContainer(title){
+Widget customImageContainer(title){
 
   return Container(
     height: 93,
-    width: 124.w,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
@@ -24,6 +23,9 @@ customImageContainer(title){
     ),
     child: Column(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: 4,
       children: [
         SvgPicture.asset(kGalleryIcon1,height: 40,width: 40,),
         Text(
@@ -150,11 +152,11 @@ Widget viewDriverDialog(context,Map<String, dynamic> user){
                   ),
                   SizedBox(height: 43,),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    spacing: 19.w,
                     children: [
-                      customImageContainer("Front"),
-                      customImageContainer("Back"),
-                      customImageContainer("Selfie"),
+                      Expanded(child: customImageContainer("Front")),
+                      Expanded(child: customImageContainer("Back")),
+                      Expanded(child: customImageContainer("Selfie")),
                     ],
                   ),
                   SizedBox(height: 25,),
