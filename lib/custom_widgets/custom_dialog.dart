@@ -1,12 +1,12 @@
 // widgets/custom_dialog.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lahakni_web/utils/app_styles.dart';
 
 import '../utils/app_colors.dart';
 
+// ignore: must_be_immutable
 class CustomDialog extends StatelessWidget {
   final Widget content;
   final double? width;
@@ -20,35 +20,42 @@ class CustomDialog extends StatelessWidget {
     this.width,
     this.showTitle = false,
     this.horPadding = 28,
-    this.title = ''
+    this.title = '',
   });
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       child: SizedBox(
         width: width ?? 598,
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 37,horizontal: horPadding),
+            padding: EdgeInsets.symmetric(vertical: 37, horizontal: horPadding),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: showTitle == true ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
+                  mainAxisAlignment:
+                      showTitle == true
+                          ? MainAxisAlignment.spaceBetween
+                          : MainAxisAlignment.end,
                   children: [
-                    if(showTitle == true)
-                    Text(title,style: AppStyles.regularGilroyTextStyle().copyWith(fontSize: 28.sp,fontWeight: FontWeight.w500),),
-                    InkWell(
+                    if (showTitle == true)
+                      Text(
+                        title,
+                        style: AppStyles.regularGilroyTextStyle().copyWith(
+                          fontSize: 28.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    GestureDetector(
                       onTap: () => Get.back(),
                       child: Container(
-                        height: 65,
-                        width: 65,
+                        height: 55,
+                        width: 55,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: kWhiteColor,
@@ -61,7 +68,7 @@ class CustomDialog extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: Center(child: Icon(Icons.close,size: 20,)),
+                        child: Center(child: Icon(Icons.close, size: 20)),
                       ),
                     ),
                   ],

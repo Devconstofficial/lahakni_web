@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lahakni_web/custom_widgets/auth_component.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/app_styles.dart';
 import '../../custom_widgets/custom_button.dart';
 import '../../custom_widgets/custom_textfield.dart';
-import '../../utils/app_strings.dart';
-import '../sidemenu/sidemenu.dart';
 import 'controller/auth_controller.dart';
 
 class SendOtpScreen extends GetView<AuthController> {
@@ -19,7 +15,6 @@ class SendOtpScreen extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: AuthComponent(
         content: Column(
@@ -31,7 +26,7 @@ class SendOtpScreen extends GetView<AuthController> {
               children: [
                 Image.asset(kLogoImage, height: 86.h, width: 76.w),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.back();
                   },
                   child: Container(
@@ -49,9 +44,15 @@ class SendOtpScreen extends GetView<AuthController> {
                         ),
                       ],
                     ),
-                    child: Center(child: Icon(Icons.close,color: kBlackTextColor2,size: 24,)),
+                    child: Center(
+                      child: Icon(
+                        Icons.close,
+                        color: kBlackTextColor2,
+                        size: 24,
+                      ),
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(height: 28.h),
@@ -65,13 +66,23 @@ class SendOtpScreen extends GetView<AuthController> {
             SizedBox(height: 8),
             Text(
               "Enter your email, we will send a verification \ncode to your email",
-              style: AppStyles.blackTextStyle().copyWith(fontSize: 18,color: kBlackTextColor3,fontWeight: FontWeight.w500),
+              style: AppStyles.blackTextStyle().copyWith(
+                fontSize: 18,
+                color: kBlackTextColor3,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             SizedBox(height: 57.h),
             CustomTextField(
+              controller: controller.emailForgotPassController,
               hintText: "Email",
               prefix: Padding(
-                padding: EdgeInsets.only(left: 30.h,bottom: 8,top: 8,right: 8),
+                padding: EdgeInsets.only(
+                  left: 30.h,
+                  bottom: 8,
+                  top: 8,
+                  right: 8,
+                ),
                 child: SvgPicture.asset(kMailIcon),
               ),
               focusedFillColor: kSecondaryColor.withOpacity(0.1),
@@ -80,15 +91,14 @@ class SendOtpScreen extends GetView<AuthController> {
             ),
             SizedBox(height: 100),
             CustomButton(
-              title: "Send Link",
+              title: "Send Otp",
               onTap: () {
-                Get.toNamed(kVerifyOtpScreenRoute);
+                controller.forgotPassword();
               },
             ),
           ],
         ),
       ),
-
     );
   }
 }

@@ -1,13 +1,16 @@
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lahakni_web/firebase_options.dart';
 import 'package:lahakni_web/utils/app_strings.dart';
 import 'package:lahakni_web/utils/app_theme.dart';
 import 'package:lahakni_web/utils/route_generator.dart';
 import 'package:lahakni_web/utils/screen_bindings.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -27,10 +30,10 @@ class MyApp extends StatelessWidget {
           defaultTransition: Transition.noTransition,
           debugShowCheckedModeBanner: false,
           initialBinding: ScreenBindings(),
-          initialRoute: kAuthScreenRoute,
+          initialRoute: kStartScreenRoute,
           getPages: RouteGenerator.getPages(),
           builder: (context, child) {
-            return  MediaQuery(
+            return MediaQuery(
               data: MediaQuery.of(context).copyWith(
                 textScaler: TextScaler.linear(
                   MediaQuery.of(context).textScaleFactor.clamp(1.0, 1.0),

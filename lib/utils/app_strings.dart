@@ -1,3 +1,4 @@
+const String kStartScreenRoute = "/";
 const String kAuthScreenRoute = "/AuthScreenRoute";
 const String kSendOtpScreenRoute = "/SendOtpScreenRoute";
 const String kVerifyOtpScreenRoute = "/VerifyOtpScreenRoute";
@@ -10,4 +11,4 @@ const String kDriverScreenRoute = "/DriverScreenRoute";
 const String kDriverDetailScreenRoute = "/DriverDetailScreenRoute";
 const String kRideDetailScreenRoute = "/RideDetailScreenRoute";
 const String kRideBookingScreenRoute = "/RideBookingScreenRoute";
-
+const String kSupportScreenRoute = "/SupportScreenRoute";

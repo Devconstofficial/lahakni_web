@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:lahakni_web/screens/driver_screens/controller/ride_detail_controller.dart';
 import 'package:lahakni_web/screens/ride_booking_screen/controller/ride_booking_controller.dart';
 import 'package:lahakni_web/screens/setting_screen/controller/setting_controller.dart';
+import 'package:lahakni_web/screens/support/controller/support_controller.dart';
 import 'package:lahakni_web/screens/user_screen/controller/user_controller.dart';
 
 import '../screens/auth/controller/auth_controller.dart';
@@ -16,5 +18,7 @@ class ScreenBindings extends Bindings {
     Get.lazyPut(() => SettingController());
     Get.lazyPut(() => DriverController());
     Get.lazyPut(() => RideBookingController());
+    Get.lazyPut(() => RideDetailController());
+    Get.lazyPut(() => SupportController());
   }
 }

@@ -1,364 +1,114 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../utils/app_images.dart';
+import 'package:lahakni_web/custom_widgets/custom_snackbar.dart';
+import 'package:lahakni_web/models/customer_model.dart';
+import 'package:lahakni_web/models/ride_model.dart';
+import 'package:lahakni_web/services/customer_service.dart';
 
 class UserController extends GetxController {
+  final CustomerService _service = CustomerService();
+  var isLoading = false.obs;
+  var isError = false.obs;
+  var errorMsg = "".obs;
+  var isLoading1 = false.obs;
+  var isError1 = false.obs;
+  var errorMsg1 = "".obs;
+  RxList<CustomerModel> customers = <CustomerModel>[].obs;
+  Rx<CustomerModel> customerDetail = CustomerModel.empty().obs;
+  RxList<RideModel> rides = <RideModel>[].obs;
 
-  var users = [
-    {
-      'image': kPersonImage1,
-      'name': "Mehaik Fatima",
-      'status': "Passenger",
-      'totalRides': "12",
-      'completedRides': "4",
-      'canceledRides': "4",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Ahmed Khan",
-      'status': "Passenger",
-      'totalRides': "9",
-      'completedRides': "6",
-      'canceledRides': "1",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Areeba Sheikh",
-      'status': "Passenger",
-      'totalRides': "15",
-      'completedRides': "12",
-      'canceledRides': "2",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Hassan Raza",
-      'status': "Passenger",
-      'totalRides': "7",
-      'completedRides': "5",
-      'canceledRides': "1",
-      'paymentStatus': "Failed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Zainab Tariq",
-      'status': "Passenger",
-      'totalRides': "20",
-      'completedRides': "18",
-      'canceledRides': "1",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Umar Saeed",
-      'status': "Passenger",
-      'totalRides': "10",
-      'completedRides': "9",
-      'canceledRides': "0",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Mariam Ali",
-      'status': "Passenger",
-      'totalRides': "13",
-      'completedRides': "11",
-      'canceledRides': "1",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Talha Qureshi",
-      'status': "Passenger",
-      'totalRides': "17",
-      'completedRides': "16",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Sara Malik",
-      'status': "Passenger",
-      'totalRides': "5",
-      'completedRides': "3",
-      'canceledRides': "1",
-      'paymentStatus': "Failed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Bilal Asim",
-      'status': "Passenger",
-      'totalRides': "14",
-      'completedRides': "12",
-      'canceledRides': "1",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Nadia Shams",
-      'status': "Passenger",
-      'totalRides': "6",
-      'completedRides': "5",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Osama Javed",
-      'status': "Passenger",
-      'totalRides': "11",
-      'completedRides': "10",
-      'canceledRides': "1",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Farah Nawaz",
-      'status': "Passenger",
-      'totalRides': "8",
-      'completedRides': "6",
-      'canceledRides': "2",
-      'paymentStatus': "Failed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Ali Raza",
-      'status': "Passenger",
-      'totalRides': "18",
-      'completedRides': "17",
-      'canceledRides': "1",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Zoya Iqbal",
-      'status': "Passenger",
-      'totalRides': "7",
-      'completedRides': "5",
-      'canceledRides': "1",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Rehan Saleem",
-      'status': "Passenger",
-      'totalRides': "16",
-      'completedRides': "14",
-      'canceledRides': "1",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Amina Yousuf",
-      'status': "Passenger",
-      'totalRides': "9",
-      'completedRides': "8",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Haris Mehmood",
-      'status': "Passenger",
-      'totalRides': "10",
-      'completedRides': "9",
-      'canceledRides': "1",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Sana Mir",
-      'status': "Passenger",
-      'totalRides': "11",
-      'completedRides': "10",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Junaid Ahmed",
-      'status': "Passenger",
-      'totalRides': "12",
-      'completedRides': "11",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Fatima Bukhari",
-      'status': "Passenger",
-      'totalRides': "6",
-      'completedRides': "4",
-      'canceledRides': "1",
-      'paymentStatus': "Failed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Abdullah Waqar",
-      'status': "Passenger",
-      'totalRides': "19",
-      'completedRides': "17",
-      'canceledRides': "1",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Hiba Nawaz",
-      'status': "Passenger",
-      'totalRides': "13",
-      'completedRides': "12",
-      'canceledRides': "0",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Tariq Shah",
-      'status': "Passenger",
-      'totalRides': "20",
-      'completedRides': "20",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Nadia Shams",
-      'status': "Passenger",
-      'totalRides': "6",
-      'completedRides': "5",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Osama Javed",
-      'status': "Passenger",
-      'totalRides': "11",
-      'completedRides': "10",
-      'canceledRides': "1",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Farah Nawaz",
-      'status': "Passenger",
-      'totalRides': "8",
-      'completedRides': "6",
-      'canceledRides': "2",
-      'paymentStatus': "Failed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Ali Raza",
-      'status': "Passenger",
-      'totalRides': "18",
-      'completedRides': "17",
-      'canceledRides': "1",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Zoya Iqbal",
-      'status': "Passenger",
-      'totalRides': "7",
-      'completedRides': "5",
-      'canceledRides': "1",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Rehan Saleem",
-      'status': "Passenger",
-      'totalRides': "16",
-      'completedRides': "14",
-      'canceledRides': "1",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Amina Yousuf",
-      'status': "Passenger",
-      'totalRides': "9",
-      'completedRides': "8",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Haris Mehmood",
-      'status': "Passenger",
-      'totalRides': "10",
-      'completedRides': "9",
-      'canceledRides': "1",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Sana Mir",
-      'status': "Passenger",
-      'totalRides': "11",
-      'completedRides': "10",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Junaid Ahmed",
-      'status': "Passenger",
-      'totalRides': "12",
-      'completedRides': "11",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Fatima Bukhari",
-      'status': "Passenger",
-      'totalRides': "6",
-      'completedRides': "4",
-      'canceledRides': "1",
-      'paymentStatus': "Failed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Abdullah Waqar",
-      'status': "Passenger",
-      'totalRides': "19",
-      'completedRides': "17",
-      'canceledRides': "1",
-      'paymentStatus': "Completed",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Hiba Nawaz",
-      'status': "Passenger",
-      'totalRides': "13",
-      'completedRides': "12",
-      'canceledRides': "0",
-      'paymentStatus': "Pending",
-    },
-    {
-      'image': kPersonImage1,
-      'name': "Tariq Shah",
-      'status': "Passenger",
-      'totalRides': "20",
-      'completedRides': "20",
-      'canceledRides': "0",
-      'paymentStatus': "Completed",
-    },
-  ].obs;
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getCustomers();
+  }
+
+  void getCustomers() async {
+    try {
+      isLoading(true);
+      var result = await _service.getCustomers();
+      isLoading(false);
+      if (result is List<CustomerModel>) {
+        customers.assignAll(result);
+        isError(false);
+        errorMsg.value = '';
+        return;
+      } else {
+        isError(true);
+        errorMsg.value = result.toString();
+      }
+    } catch (e) {
+      isLoading(false);
+      isError(true);
+      errorMsg.value = e.toString();
+    }
+  }
+
+  void suspendCustomer(String id, bool value) async {
+    try {
+      Get.dialog(
+        const Center(child: CircularProgressIndicator()),
+        barrierDismissible: false,
+      );
+      var result = await _service.suspendCustomer(id: id, value: value);
+      Get.back();
+      if (result is CustomerModel) {
+        Get.back();
+        customerDetail.value.isSuspend = result.isSuspend;
+        customerDetail.refresh();
+        showCustomSnackbar(
+          "Success",
+          value == true
+              ? "User suspended successfully"
+              : "User reactivated successfully",
+          backgroundColor: Colors.green,
+        );
+        return;
+      } else {
+        showCustomSnackbar("Error", result.toString());
+      }
+    } catch (e) {
+      Get.back();
+      showCustomSnackbar("Error", e.toString());
+    }
+  }
+
+  void geCustomerDetail(String id) async {
+    try {
+      isLoading1(true);
+      var result = await _service.getCustomerDetail(id: id);
+      isLoading1(false);
+      if (result is CustomerModel) {
+        customerDetail.value = result;
+        rides.value = result.rides;
+        isError1(false);
+        errorMsg1.value = '';
+        return;
+      } else {
+        isError1(true);
+        errorMsg1.value = result.toString();
+      }
+    } catch (e) {
+      isLoading1(false);
+      isError1(true);
+      errorMsg1.value = e.toString();
+    }
+  }
 
   var currentPage = 1.obs;
   final int itemsPerPage = 6;
   final int pagesPerGroup = 4;
 
-  int get totalPages => (users.length / itemsPerPage).ceil();
+  int get totalPages => (customers.length / itemsPerPage).ceil();
 
-  List<Map<String, String>> get pagedUsers {
+  List<CustomerModel> get pagedUsers {
     int start = (currentPage.value - 1) * itemsPerPage;
     int end = start + itemsPerPage;
-    return users.sublist(start, end > users.length ? users.length : end);
+    return customers.sublist(
+      start,
+      end > customers.length ? customers.length : end,
+    );
   }
 
   int get currentGroup => ((currentPage.value - 1) / pagesPerGroup).floor();
@@ -384,5 +134,4 @@ class UserController extends GetxController {
       currentPage.value--;
     }
   }
-
 }

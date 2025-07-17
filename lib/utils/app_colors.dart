@@ -5,7 +5,10 @@ const Color kSecondaryColor = Color(0xFF31572C);
 const Color kSecondaryColor1 = Color(0xFF28D30E);
 const Color kGreenColor = Color(0xFFA2EB29);
 const Color kTealColor = Color(0xFF92E3A9);
+const Color kGreenShadeColor = Color(0xFFA3D139);
 const Color kRedColor = Color(0xFFED0000);
+const Color kRedShadeColor = Color(0xFFFFEFEF);
+const Color kRedShade1Color = Color(0xFFF8183E);
 const Color kOrangeColor = Color(0xFFFF9500);
 const Color kBgColor = Color(0xFFEFE9E9);
 const Color kWhiteColor = Color(0xFFFFFFFF);
@@ -32,4 +35,3 @@ const Color kGreyColor13 = Color(0xFFE0E4EC);
 const Color kGreyColor14 = Color(0xFF999999);
 const Color kGreyColor15 = Color(0xFFA0A0A0);
 const Color kGreyColor16 = Color(0xFF1E1E1E);
-

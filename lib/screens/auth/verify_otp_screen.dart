@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lahakni_web/custom_widgets/auth_component.dart';
 import 'package:otp_text_field/style.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/app_styles.dart';
 import '../../custom_widgets/custom_button.dart';
-import '../../custom_widgets/custom_textfield.dart';
-import '../../utils/app_strings.dart';
-import '../sidemenu/sidemenu.dart';
 import 'controller/auth_controller.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
@@ -22,7 +16,6 @@ class VerifyOtpScreen extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: AuthComponent(
         content: Column(
@@ -34,7 +27,7 @@ class VerifyOtpScreen extends GetView<AuthController> {
               children: [
                 Image.asset(kLogoImage, height: 86.h, width: 76.w),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.back();
                   },
                   child: Container(
@@ -52,9 +45,15 @@ class VerifyOtpScreen extends GetView<AuthController> {
                         ),
                       ],
                     ),
-                    child: Center(child: Icon(Icons.close,color: kBlackTextColor2,size: 24,)),
+                    child: Center(
+                      child: Icon(
+                        Icons.close,
+                        color: kBlackTextColor2,
+                        size: 24,
+                      ),
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             SizedBox(height: 28.h),
@@ -68,32 +67,47 @@ class VerifyOtpScreen extends GetView<AuthController> {
             SizedBox(height: 8),
             Text(
               "Enter your email, we will Enter the verification code \nthat have sent to your email.",
-              style: AppStyles.blackTextStyle().copyWith(fontSize: 18,color: kBlackTextColor3,fontWeight: FontWeight.w500),
+              style: AppStyles.blackTextStyle().copyWith(
+                fontSize: 18,
+                color: kBlackTextColor3,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             SizedBox(height: 48.h),
             OTPTextField(
+              controller: controller.code,
               length: 4,
               width: MediaQuery.of(context).size.width,
               textFieldAlignment: MainAxisAlignment.center,
               fieldWidth: 70,
               margin: EdgeInsets.only(left: 16),
-              otpFieldStyle: OtpFieldStyle(enabledBorderColor: kBlackTextColor2,borderColor: kBlackTextColor2,focusBorderColor: kPrimaryColor,disabledBorderColor: kBlackTextColor2),
+              otpFieldStyle: OtpFieldStyle(
+                enabledBorderColor: kBlackTextColor2,
+                borderColor: kBlackTextColor2,
+                focusBorderColor: kPrimaryColor,
+                disabledBorderColor: kBlackTextColor2,
+              ),
               fieldStyle: FieldStyle.box,
               contentPadding: EdgeInsets.symmetric(vertical: 25),
               outlineBorderRadius: 8.r,
               style: const TextStyle(fontSize: 17),
-              onChanged: (pin) {
-
+              onChanged: (pin) {},
+              onCompleted: (pin) async {
+                controller.otpCode.value = pin;
               },
-              onCompleted: (pin) async {},
             ),
             SizedBox(height: 8),
             Center(
-              child: Text(
-                "Resend Code",
-                style: AppStyles.blackTextStyle().copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
+              child: GestureDetector(
+                onTap: () {
+                  controller.resendOtp();
+                },
+                child: Text(
+                  "Resend Code",
+                  style: AppStyles.blackTextStyle().copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ),
@@ -101,13 +115,12 @@ class VerifyOtpScreen extends GetView<AuthController> {
             CustomButton(
               title: "Continue",
               onTap: () {
-                Get.toNamed(kSetNewPassScreenRoute);
+                controller.verifyOtp();
               },
             ),
           ],
         ),
       ),
-
     );
   }
 }

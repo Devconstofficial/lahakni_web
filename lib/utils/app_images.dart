@@ -27,7 +27,7 @@ String kGalleryIcon1 = "$basePathIcons/gallery.svg";
 String kDocImage = "$basePathIcons/docImage.png";
 
 String kChatIcon = "$basePathIcons/chat.svg";
-
+String kSupportIcon = "$basePathIcons/support.svg";
 
 /// IMAGES
 String kAuthImage1 = "$basePath/auth_image1.png";
@@ -46,3 +46,4 @@ String kCar3Image = "$basePath/car3.png";
 String kPopupImage = "$basePath/popup.png";
 String kCarBackImage = "$basePath/car_back.png";
 String kCarFrontImage = "$basePath/car_front.png";
+String kDummyImg = "$basePath/dummy.png";
