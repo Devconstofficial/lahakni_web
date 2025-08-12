@@ -36,6 +36,10 @@ class AuthService {
         tokenKey: SessionTokenKeys.kUserTokenKey,
         tokenValue: responseModel.data["data"]["authToken"],
       );
+      await _sessionManagement.setSession(
+        SessionTokenKeys.kUserTokenKey,
+        responseModel.data["data"]["authToken"],
+      );
 
       await _sessionManagement.saveSession(
         tokenKey: SessionTokenKeys.kUserModelKey,

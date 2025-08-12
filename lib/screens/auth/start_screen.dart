@@ -23,11 +23,20 @@ class _StartScreenState extends State<StartScreen> {
   }
 
   void _checkSessionAndNavigate() async {
-    final isRemember = await _sessionManagement.getBoolSession(
-      tokenKey: SessionTokenKeys.kIsRememberMeKey,
+    // final isRemember = await _sessionManagement.getBoolSession(
+    //   tokenKey: SessionTokenKeys.kIsRememberMeKey,
+    // );
+
+    // if (isRemember == true) {
+    //   Get.offAllNamed(kDashboardScreenRoute);
+    // } else {
+    //   Get.offAllNamed(kAuthScreenRoute);
+    // }
+    final authToken = await _sessionManagement.getSession(
+      SessionTokenKeys.kUserTokenKey,
     );
 
-    if (isRemember == true) {
+    if (authToken != null && authToken.isNotEmpty) {
       Get.offAllNamed(kDashboardScreenRoute);
     } else {
       Get.offAllNamed(kAuthScreenRoute);

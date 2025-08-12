@@ -6,8 +6,6 @@ import 'package:lahakni_web/custom_widgets/custom_snackbar.dart';
 import 'package:lahakni_web/models/user_model.dart';
 import 'package:lahakni_web/services/auth_service.dart';
 import 'package:lahakni_web/utils/app_strings.dart';
-import 'package:lahakni_web/utils/session_management/session_management.dart';
-import 'package:lahakni_web/utils/session_management/session_token_keys.dart';
 import 'package:otp_text_field/otp_field.dart';
 
 class AuthController extends GetxController {
@@ -53,10 +51,10 @@ class AuthController extends GetxController {
         Get.back();
         if (result is UserModel) {
           if (result.role == 'ADMIN') {
-            SessionManagement().saveBoolSession(
-              tokenKey: SessionTokenKeys.kIsRememberMeKey,
-              tokenValue: true,
-            );
+            // SessionManagement().saveBoolSession(
+            //   tokenKey: SessionTokenKeys.kIsRememberMeKey,
+            //   tokenValue: true,
+            // );
             Get.offAllNamed(kDashboardScreenRoute);
             showCustomSnackbar(
               "Success",

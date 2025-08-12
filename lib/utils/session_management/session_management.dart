@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web/web.dart' as web;
 
 class SessionManagement {
   SessionManagement._();
@@ -7,6 +8,22 @@ class SessionManagement {
 
   factory SessionManagement() {
     return _instance;
+  }
+
+  Future<void> setSession(String key, String value) async {
+    web.window.sessionStorage.setItem(key, value);
+  }
+
+  Future<String?> getSession(String key) async {
+    return web.window.sessionStorage.getItem(key);
+  }
+
+  Future<void> removeSessionn(String key) async {
+    web.window.sessionStorage.removeItem(key);
+  }
+
+  Future<void> clearSession() async {
+    web.window.sessionStorage.clear();
   }
 
   Future<void> saveSession({

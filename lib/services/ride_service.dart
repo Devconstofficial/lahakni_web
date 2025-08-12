@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:lahakni_web/models/response_model.dart';
 import 'package:lahakni_web/models/ride_model.dart';
 import 'package:lahakni_web/services/http_request.dart';
@@ -29,7 +31,7 @@ class RideService {
         'Authorization': 'Baerer $token',
       },
     );
-
+    log("$responseModel");
     if (responseModel.statusCode >= 200 && responseModel.statusCode <= 230) {
       return (responseModel.data['data']["rides"] as List)
           .map((json) => RideModel.fromJson(json))

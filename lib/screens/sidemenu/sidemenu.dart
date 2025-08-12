@@ -50,15 +50,16 @@ class _SideMenuState extends State<SideMenu> {
             title: "Yes Logout",
             onTap: () {
               final SessionManagement sessionManagement = SessionManagement();
-              sessionManagement.removeSession(
-                token: SessionTokenKeys.kIsRememberMeKey,
-              );
-              sessionManagement.removeSession(
-                token: SessionTokenKeys.kUserModelKey,
-              );
-              sessionManagement.removeSession(
-                token: SessionTokenKeys.kUserTokenKey,
-              );
+              // sessionManagement.removeSession(
+              //   token: SessionTokenKeys.kIsRememberMeKey,
+              // );
+              // sessionManagement.removeSession(
+              //   token: SessionTokenKeys.kUserModelKey,
+              // );
+              // sessionManagement.removeSession(
+              //   token: SessionTokenKeys.kUserTokenKey,
+              // );
+              sessionManagement.removeSessionn(SessionTokenKeys.kUserTokenKey);
               Get.offAllNamed(kAuthScreenRoute);
             },
             height: 68.h,
