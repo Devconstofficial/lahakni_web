@@ -33,8 +33,8 @@ class RideModel {
     to = json["to"] ?? "";
     customerId = json["customerId"] ?? "";
     riderId = json["riderId"] ?? "";
-    recommendedFare = json["recommendedFare"] ?? "";
-    offeredFare = json["offeredFare"] ?? "";
+    recommendedFare = json["recommendedFare"].toString() ?? "";
+    offeredFare = json["offeredFare"].toString() ?? "";
     isPaid = json["isPaid"] ?? false;
     acceptedAt = json["acceptedAt"];
     startedAt = json["startedAt"];

@@ -31,7 +31,7 @@ class RideService {
         'Authorization': 'Baerer $token',
       },
     );
-    log("$responseModel");
+
     if (responseModel.statusCode >= 200 && responseModel.statusCode <= 230) {
       return (responseModel.data['data']["rides"] as List)
           .map((json) => RideModel.fromJson(json))

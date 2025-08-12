@@ -264,32 +264,36 @@ class _RideDetailScreenState extends State<RideDetailScreen> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Text(
-                                                            controller
-                                                                .rideDetail
-                                                                .value
-                                                                .from,
-                                                            style:
-                                                                AppStyles.regularGilroyTextStyle()
-                                                                    .copyWith(
-                                                                      fontSize:
-                                                                          20.sp,
-                                                                    ),
+                                                          SizedBox(
+                                                            width: 320.w,
+                                                            child: Text(
+                                                              controller
+                                                                  .rideDetail
+                                                                  .value
+                                                                  .from,
+                                                              style: AppStyles.regularGilroyTextStyle()
+                                                                  .copyWith(
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                  ),
+                                                            ),
                                                           ),
                                                           SizedBox(
                                                             height: 43.h,
                                                           ),
-                                                          Text(
-                                                            controller
-                                                                .rideDetail
-                                                                .value
-                                                                .to,
-                                                            style:
-                                                                AppStyles.regularGilroyTextStyle()
-                                                                    .copyWith(
-                                                                      fontSize:
-                                                                          20.sp,
-                                                                    ),
+                                                          SizedBox(
+                                                            width: 320.w,
+                                                            child: Text(
+                                                              controller
+                                                                  .rideDetail
+                                                                  .value
+                                                                  .to,
+                                                              style: AppStyles.regularGilroyTextStyle()
+                                                                  .copyWith(
+                                                                    fontSize:
+                                                                        18.sp,
+                                                                  ),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
