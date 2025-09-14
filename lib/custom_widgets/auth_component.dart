@@ -5,10 +5,6 @@ import 'package:get/get.dart';
 import 'package:lahakni_web/screens/auth/controller/auth_controller.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_images.dart';
-import '../utils/app_strings.dart';
-import '../utils/app_styles.dart';
-import 'custom_button.dart';
-import 'custom_textfield.dart';
 
 class AuthComponent extends StatelessWidget {
   Widget content;

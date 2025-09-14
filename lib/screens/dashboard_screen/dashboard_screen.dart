@@ -18,7 +18,7 @@ import 'controller/dashboard_controller.dart';
 class DashboardScreen extends GetView<DashboardController> {
   const DashboardScreen({super.key});
 
-  statusRow(text, Color color) {
+  Row statusRow(text, Color color) {
     return Row(
       children: [
         CircleAvatar(radius: 4, backgroundColor: color),
@@ -415,7 +415,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                             response,
                                                           ) {},
                                                       touchTooltipData: LineTouchTooltipData(
-                                                        tooltipRoundedRadius: 8,
+                                                        tooltipBorderRadius: BorderRadius.circular(8),
                                                         fitInsideHorizontally:
                                                             true,
                                                         fitInsideVertically:
@@ -846,7 +846,7 @@ class DashboardScreen extends GetView<DashboardController> {
     );
   }
 
-  customContainer(image, VoidCallback onTap) {
+  InkWell customContainer(image, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -872,7 +872,7 @@ class DashboardScreen extends GetView<DashboardController> {
     );
   }
 
-  insightContainer(
+  Padding insightContainer(
     String insights,
     String title,
     String image,

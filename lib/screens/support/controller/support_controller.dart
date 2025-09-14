@@ -21,7 +21,7 @@ class SupportController extends GetxController {
     getAll();
   }
 
-  getAll() {
+  void getAll() {
     Future.wait([getRideIssues(), getSupportMessages()]);
   }
 

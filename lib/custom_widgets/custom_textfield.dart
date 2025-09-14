@@ -32,7 +32,7 @@ class CustomTextField extends StatefulWidget {
   final Color focusedFillColor;
   final EdgeInsets contentPadding;
 
-  CustomTextField({
+  const CustomTextField({
     super.key,
     this.controller,
     this.focusNode,

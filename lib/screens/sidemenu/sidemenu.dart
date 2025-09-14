@@ -22,7 +22,7 @@ class SideMenu extends StatefulWidget {
 class _SideMenuState extends State<SideMenu> {
   final menuController = Get.put(SideMenuController());
 
-  deleteDialog() {
+  CustomDialog deleteDialog() {
     return CustomDialog(
       content: Column(
         children: [

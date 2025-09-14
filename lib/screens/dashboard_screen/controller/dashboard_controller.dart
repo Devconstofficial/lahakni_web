@@ -80,7 +80,7 @@ class DashboardController extends GetxController {
     getAll();
   }
 
-  getAll() {
+  void getAll() {
     Future.wait([getStats(), getActiveDrivers(), getRideStats()]);
   }
 

@@ -17,7 +17,7 @@ import '../sidemenu/sidemenu.dart';
 class SupportScreen extends GetView<SupportController> {
   const SupportScreen({super.key});
 
-  statusRow(text, Color color) {
+  Row statusRow(text, Color color) {
     return Row(
       children: [
         CircleAvatar(radius: 4, backgroundColor: color),

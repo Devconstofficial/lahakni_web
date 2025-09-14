@@ -20,7 +20,7 @@ class RideBookingScreen extends GetView<RideBookingController> {
     NotificationController(),
   );
 
-  statusRow(text, Color color) {
+  Row statusRow(text, Color color) {
     return Row(
       children: [
         CircleAvatar(radius: 4, backgroundColor: color),
@@ -298,7 +298,7 @@ class RideBookingScreen extends GetView<RideBookingController> {
     );
   }
 
-  customContainer(image, VoidCallback onTap) {
+  InkWell customContainer(image, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       child: Container(

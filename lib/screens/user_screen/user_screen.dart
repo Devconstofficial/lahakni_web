@@ -20,7 +20,7 @@ class UserScreen extends GetView<UserController> {
     NotificationController(),
   );
 
-  statusRow(text, Color color) {
+  Row statusRow(text, Color color) {
     return Row(
       children: [
         CircleAvatar(radius: 4, backgroundColor: color),
@@ -229,7 +229,7 @@ class UserScreen extends GetView<UserController> {
     );
   }
 
-  customContainer(image, VoidCallback onTap) {
+  InkWell customContainer(image, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -255,7 +255,7 @@ class UserScreen extends GetView<UserController> {
     );
   }
 
-  insightContainer(
+  Padding insightContainer(
     String insights,
     String title,
     String image,

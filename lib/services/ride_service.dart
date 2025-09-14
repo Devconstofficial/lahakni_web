@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:lahakni_web/models/response_model.dart';
 import 'package:lahakni_web/models/ride_model.dart';

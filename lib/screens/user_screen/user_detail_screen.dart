@@ -31,7 +31,7 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
     controller.geCustomerDetail(id);
   }
 
-  statusRow(text, Color color) {
+  Row statusRow(text, Color color) {
     return Row(
       children: [
         CircleAvatar(radius: 4, backgroundColor: color),
@@ -573,7 +573,7 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
     );
   }
 
-  customContainer(image, VoidCallback onTap) {
+  InkWell customContainer(image, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       child: Container(

@@ -515,7 +515,7 @@ class _RideDetailScreenState extends State<RideDetailScreen> {
     );
   }
 
-  customContainer(image, VoidCallback onTap) {
+  InkWell customContainer(image, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       child: Container(
